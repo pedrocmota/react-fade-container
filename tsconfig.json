@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "module": "commonJS",
+    "target": "ES6",
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "noImplicitAny": false,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable"
+    ],
+    "types": []
+  },
+  "include": ["src/*"],
+  "exclude": [
+    "./public",
+    "./webpack.config.ts"
+  ]
+}
