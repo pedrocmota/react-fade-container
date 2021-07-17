@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, {useRef, useEffect} from 'react'
 import {useDidMountEffect} from 'react-more-hooks'
 import transition from 'transitionjs'
 
@@ -11,8 +11,16 @@ interface IFade extends React.HTMLAttributes<HTMLDivElement> {
 const Fade: React.FunctionComponent<IFade> = ({visible = true, timer = 300, ...props}) => {
   const ref = useRef<HTMLDivElement>()
   const display = useRef('block')
+  useEffect(() => {
+    if(!visible) ref.current.style.display = 'none'
+  }, [])
   useDidMountEffect(() => {
     if (visible) {
+      ref.current.style.display = display.current
+      transition.begin(ref.current, ['opacity 0 1'], {
+        duration: `${timer}ms`
+      })
+    } else {
       display.current = ref.current.style.display
       transition.begin(ref.current, ['opacity 1 0'], {
         duration: `${timer}ms`,
@@ -21,11 +29,6 @@ const Fade: React.FunctionComponent<IFade> = ({visible = true, timer = 300, ...p
             element.style.display = 'none'
           }
         }
-      })
-    } else {
-      ref.current.style.display = display.current
-      transition.begin(ref.current, ['opacity 0 1'], {
-        duration: `${timer}ms`
       })
     }
   }, [visible])

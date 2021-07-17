@@ -9,11 +9,11 @@ const Test: React.FunctionComponent = () => {
 }
 
 const App = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(true)
   return (
     <div style={{display: 'flex', flexDirection: 'column', 'alignItems': 'center'}}>
       <button style={{marginTop: 10}} onClick={() => setVisible(!visible)}>
-        {visible ? 'Mostrar' : 'Ocultar'}
+        {!visible ? 'Mostrar' : 'Ocultar'}
       </button>
       <Fade visible={visible} style={{display: 'flex'}}>
         <div style={{width: '300px', height: '300px', backgroundColor: '#1593ce'}}/>
