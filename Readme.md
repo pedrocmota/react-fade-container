@@ -1,7 +1,8 @@
 # React Fade Container
 
-A React component in which its children are animated with fadeIn. 
-When the component has zero opacity, its display will be none
+A React component in which its children are animated with an opacity transition.
+When the components opacity is set to 0, 
+that component will have its 'display' property set to 'none'
 
 ## Installation
 
@@ -15,10 +16,10 @@ yarn add react-fade-container
 
 ## List of props
 
-| Name                     | Description                 |
-|--------------------------|-----------------------------|
-| visible                  | Show and hide the component |
-| timer? (default = 300ms) | The timer of the animation  |
+| Name                            | Description                 |
+|---------------------------------|-----------------------------|
+| visible:boolean                 | Show and hide the component |
+| timer?:number (default = 300ms) | The timer of the animation  |
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

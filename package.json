@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pedrocmota"
+    "url": "https://github.com/pedrocmota/react-fade-container"
   },
   "scripts": {
     "start": "webpack-cli serve --mode=development --env development --open --hot",
@@ -18,6 +18,14 @@
     "name": "Pedro Mota",
     "email": "pedrocerqueiramota@gmail.com"
   },
+  "keywords": [
+    "react",
+    "fade",
+    "container",
+    "div",
+    "opacity",
+    "animation"
+  ],
   "dependencies": {
     "react": "^17.0.2",
     "react-more-hooks": "^0.0.2",
