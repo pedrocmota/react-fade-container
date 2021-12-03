@@ -1,6 +1,6 @@
-import React, {useRef, useEffect} from 'react'
-import {useDidMountEffect} from 'react-more-hooks'
-import transition from 'transitionjs'
+import React, {useState, useRef, useEffect} from 'react'
+import {useDidMountEffect, useForceUpdate} from 'react-more-hooks'
+import './css.css'
 
 interface IFade extends React.HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode,
@@ -9,33 +9,43 @@ interface IFade extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Fade: React.FunctionComponent<IFade> = ({visible = true, timer = 300, ...props}) => {
-  const ref = useRef<HTMLDivElement>()
-  const display = useRef('block')
+  const [render, setRender] = useState(visible)
+  const first = useRef(true)
+  const force = useForceUpdate()
+
   useEffect(() => {
-    if(!visible) ref.current.style.display = 'none'
-  }, [])
-  useDidMountEffect(() => {
-    if (visible) {
-      ref.current.style.display = display.current
-      transition.begin(ref.current, ['opacity 0 1'], {
-        duration: `${timer}ms`
-      })
-    } else {
-      display.current = ref.current.style.display
-      transition.begin(ref.current, ['opacity 1 0'], {
-        duration: `${timer}ms`,
-        onTransitionEnd: function (element, finished) {
-          if (finished) {
-            element.style.display = 'none'
-          }
-        }
-      })
-    }
+    if (visible) setRender(true)
   }, [visible])
+
+  const onAnimationEnd = () => {
+    if (!visible) setRender(false)
+  }
+
+  useDidMountEffect(() => {
+    first.current = false
+    force()
+  }, [visible])
+
+  const animation = (() => {
+    if (first.current) {
+      return ''
+    } else {
+      return `${visible ? 'fadeIn' : 'fadeOut'} ${timer}ms`
+    }
+  })()
+
   return (
-    <div {...props} ref={ref}>
-      {props.children}
-    </div>
+    render && (
+      <div
+        style={{
+          animation: animation,
+          position: 'relative'
+        }}
+        onAnimationEnd={onAnimationEnd}
+      >
+        {props.children}
+      </div>
+    )
   )
 }
 

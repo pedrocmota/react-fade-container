@@ -16,7 +16,7 @@ const webpackConfig = (env): Configuration => ({
     level: 'error',
   },
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/build'),
     filename: 'build.js'
   },
   module: {
@@ -27,9 +27,13 @@ const webpackConfig = (env): Configuration => ({
         options: {
           transpileOnly: true
         },
-        exclude: /dist/
-      }
-    ]
+        exclude: /build/
+      },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({

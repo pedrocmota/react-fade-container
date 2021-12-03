@@ -1,6 +1,6 @@
 {
   "name": "react-fade-container",
-  "version": "0.0.3",
+  "version": "2.0.0",
   "main": "/src/index.ts",
   "license": "MIT",
   "repository": {
@@ -8,11 +8,11 @@
     "url": "https://github.com/pedrocmota/react-fade-container"
   },
   "scripts": {
-    "start": "webpack-cli serve --mode=development --env development --open --hot",
-    "build": "npx tsc --module ES6",
-    "prepub": "copy package.json dist && copy README.MD dist",
-    "pub": "cd dist & npm publish",
-    "postpub": "cd dist & del package.json && del README.md"
+    "dev": "webpack-cli serve --mode=development --env development --open --hot",
+    "build": "npx tsc",
+    "prepub": "copy package.json build && copy README.MD build",
+    "pub": "cd build & npm publish",
+    "postpub": "cd build & del package.json && del README.md"
   },
   "author": {
     "name": "Pedro Mota",
@@ -28,8 +28,7 @@
   ],
   "dependencies": {
     "react": "^17.0.2",
-    "react-more-hooks": "^0.0.2",
-    "transitionjs": "^0.0.7"
+    "react-more-hooks": "^1.0.6"
   },
   "devDependencies": {
     "@types/node": "^16.0.0",
@@ -39,6 +38,7 @@
     "@types/webpack-dev-server": "^3.11.5",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
+    "css-loader": "^6.5.1",
     "eslint": "^7.30.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-react": "^7.24.0",
@@ -46,6 +46,7 @@
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "html-webpack-plugin": "^5.3.2",
     "react-dom": "^17.0.2",
+    "style-loader": "^3.3.1",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths-webpack-plugin": "^3.5.1",
